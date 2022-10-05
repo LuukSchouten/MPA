@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Songcontroller;
+
+use App\Models\Song;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/songsOverview', [Songcontroller::class, 'overview']);
+
+Route::get('/song/{song}', function($id){
+    $song = Song::findOrFail($id);
+    return view('song')->with('song', $song);
 });

@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+<x-layout>
+    <x-slot name="content">
 
-        <title>JukeBox</title>
+    <a class="styledLink" href="songsOverview">
+      <p class="centeredText">Songs</p>
+    </a>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        
-    </head>
-    <body>
-        <h1>
-            JukeBox
-        </h1>
+    <a class="styledLink" href="playlistsOverview">
+        <p class="centeredText">Playlists</p>
+    </a>
 
-        <div class="container">
+    <a class="styledLink" href="Queue">
+        <p class="centeredText">Queue</p>
+    </a>
 
-        </div>
-    </body>
-</html>
+    </x-slot>
+</x-layout>
