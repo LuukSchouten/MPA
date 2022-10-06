@@ -1,0 +1,33 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    margin: 2em 5em;
+    height: 20em;
+}
+
+#homeLink{
+    text-decoration: none;
+    color: black;
+}
+
+.styledLink{
+    display: block;
+    height: 200px;
+    width: 200px;
+    background-color: yellow;
+    margin-left: 4em;
+    margin-top: 1em;
+    float: left;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 20%;
+}
+
+.centeredText{
+    margin-top: 5em;
+}
