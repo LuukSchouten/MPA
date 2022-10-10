@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Songcontroller;
-use App\Http\Controllers\Testcontroller;
+use App\Http\Controllers\Playlistcontroller;
 
 use App\Models\Song;
 use App\Models\Playlist;
@@ -23,19 +23,25 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/songsOverview', [Songcontroller::class, 'overview']);
+Route::get('/songsOverview', [Songcontroller::class, 'read']);
 
 Route::get('/song/{song}', function($id){
     $song = Song::findOrFail($id);
-    return view('song')->with('song', $song);
+    $playlist = Playlist::all();
+    return view('song')
+        ->with('song', $song)
+        ->with('playlist', $playlist);
 });
 
-Route::get('/playlistsOverview', function() {
-    return view('playlistsOverview');
+Route::get('/playlistsOverview', [Playlistcontroller::class, 'read']);
+
+Route::get('/playlist/{playlist}', function($id){
+    $playlist = Playlist::findOrFail($id);
+    return view('playlist')->with('playlist', $playlist);
 });
 
 Route::get('/createPlaylist', function() {
     return view('createPlaylist');
 });
 
-Route::post('/createPlaylist', [Testcontroller::class, 'create']);
+Route::post('/createPlaylist', [Playlistcontroller::class, 'create']);

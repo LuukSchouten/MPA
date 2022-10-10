@@ -13,6 +13,7 @@ class Song extends Model
         'name',
         'genre',
         'length',
-        'author'
+        'author',
+        'playlist_id',
     ];
 }

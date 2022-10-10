@@ -4,7 +4,7 @@
     <h3>Create new playlist</h2>
     <form method='POST' action='createPlaylist'>
         @csrf
-        Name: <input type='text' name='name'>
+        Name: <input type='text' name='name' required>
         <input type='submit' value='submit'>
     </form>
 
