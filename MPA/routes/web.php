@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Songcontroller;
+use App\Http\Controllers\Testcontroller;
 
 use App\Models\Song;
+use App\Models\Playlist;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +29,13 @@ Route::get('/song/{song}', function($id){
     $song = Song::findOrFail($id);
     return view('song')->with('song', $song);
 });
+
+Route::get('/playlistsOverview', function() {
+    return view('playlistsOverview');
+});
+
+Route::get('/createPlaylist', function() {
+    return view('createPlaylist');
+});
+
+Route::post('/createPlaylist', [Testcontroller::class, 'create']);

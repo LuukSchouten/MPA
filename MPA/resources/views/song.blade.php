@@ -1,10 +1,13 @@
 <x-layout>
     <x-slot name="content">
 
-    {{$song->name}}
-    {{$song->genre}}
-    {{$song->length}}
-    {{$song->author}}
+    Name: {{$song->name}}
+    <br>
+    Genre: {{$song->genre}}
+    <br>
+    Length: {{$song->length}}
+    <br>
+    Author: {{$song->author}}
 
     </x-slot>
 </x-layout>
