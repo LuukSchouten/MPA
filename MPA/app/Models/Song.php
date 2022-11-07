@@ -9,6 +9,9 @@ class Song extends Model
 
     protected $table = 'songs';
 
+    public $timestamps = false;
+    const UPDATED_AT = false;
+
     protected $fillable = [
         'name',
         'genre',

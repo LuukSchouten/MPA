@@ -33,6 +33,12 @@ Route::get('/song/{song}', function($id){
         ->with('playlist', $playlist);
 });
 
+Route::get('createSong', function() {
+    return view('createSong');
+});
+
+Route::post('createSong', [Songcontroller::class, 'create']);
+
 Route::get('/playlistsOverview', [Playlistcontroller::class, 'read']);
 
 Route::get('/playlist/{playlist}', function($id){

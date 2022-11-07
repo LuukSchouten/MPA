@@ -15,5 +15,9 @@
 
     <?php } ?>
 
+    <a class="styledLink" href="createSong">
+        <p class="centeredText">Add song</p>
+    </a>
+
     </x-slot>
 </x-layout>

@@ -11,6 +11,18 @@ use App\Models\Playlist;
 
 class Songcontroller extends controller{
 
+    public function create(Request $request){
+
+        
+        $song = new Song();
+        $song->name = $request->name;
+        $song->genre = $request->genre;
+        $song->length = $request->length;
+        $song->author = $request->author;
+        $song->save();
+        return redirect()->back();
+    }
+
     public function read(){
         $song = Song::all();
         return view('songsOverview')
