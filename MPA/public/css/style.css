@@ -31,3 +31,12 @@ body {
 .centeredText{
     margin-top: 5em;
 }
+
+.deleteBtn{
+    background-color: red;
+    border-radius: 20%;
+}
+
+.deleteBtn:hover{
+    cursor: pointer;
+}

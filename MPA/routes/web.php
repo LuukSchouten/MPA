@@ -39,6 +39,12 @@ Route::get('createSong', function() {
 
 Route::post('createSong', [Songcontroller::class, 'create']);
 
+Route::get('/deleteSong/{song}', function($id){
+    $song = Song::findOrFail($id);
+    Song::where('id', $id)->delete();
+    return redirect()->back();
+});
+
 Route::get('/playlistsOverview', [Playlistcontroller::class, 'read']);
 
 Route::get('/playlist/{playlist}', function($id){
