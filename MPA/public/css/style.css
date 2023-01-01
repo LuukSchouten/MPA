@@ -40,3 +40,12 @@ body {
 .deleteBtn:hover{
     cursor: pointer;
 }
+
+.editBtn{
+    background-color: green;
+    border-radius: 20%;
+}
+
+.editBtn:hover{
+    cursor: pointer;
+}

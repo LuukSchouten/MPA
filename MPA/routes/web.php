@@ -33,11 +33,19 @@ Route::get('/song/{song}', function($id){
         ->with('playlist', $playlist);
 });
 
-Route::get('createSong', function() {
+Route::get('createSong', function(){
     return view('createSong');
 });
 
 Route::post('createSong', [Songcontroller::class, 'create']);
+
+Route::get('/editSong/{song}' , function($id){
+    $song = Song::findOrFail($id);
+    return view('editSong')
+        ->with('song', $song);
+});
+
+Route::post('/editSong/{song}', [Songcontroller::class, 'edit']);
 
 Route::get('/deleteSong/{song}', function($id){
     $song = Song::findOrFail($id);
