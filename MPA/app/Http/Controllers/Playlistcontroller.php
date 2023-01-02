@@ -11,13 +11,13 @@ use App\Models\Song;
 
 class Playlistcontroller extends controller{
 
-    //READ
+    //function to show all playlists on the playlistsOverview page
     public function read(){
         $playlist = Playlist::all();
         return view('playlistsOverview')->with('playlist', $playlist);
     }
 
-    //CREATE
+    //function to create a playlist
     public function create(Request $request){
 
         $data = $request->input();

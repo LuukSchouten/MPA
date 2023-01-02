@@ -11,6 +11,8 @@ use App\Models\Playlist;
 
 class Songcontroller extends controller{
 
+
+    //function to create a new song
     public function create(Request $request){
         $song = new Song();
         $song->name = $request->name;
@@ -21,12 +23,14 @@ class Songcontroller extends controller{
         return redirect()->back();
     }
 
+    //function to show the songs on the overview page
     public function read(){
         $song = Song::all();
         return view('songsOverview')
             ->with('song', $song);
     }
 
+    //function to edit the songs
     public function edit(Request $request, $id){
         $song = Song::findOrFail($id);
         $song->name = $request->input('name');
