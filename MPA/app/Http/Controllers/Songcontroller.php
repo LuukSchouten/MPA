@@ -41,5 +41,13 @@ class Songcontroller extends controller{
         return redirect('/songsOverview');
     }
 
+    //add the song to the selected playlist
+    public function addToPlaylist(Request $request,$id){
+        $song = Song::findOrFail($id);
+        $song->playlist_id = $request->input('playlist_id');
+        $song->save();
+        return redirect('/songsOverview');
+    }
+
 }
 ?>
