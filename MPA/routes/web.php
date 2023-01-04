@@ -59,7 +59,8 @@ Route::post('/addToPLaylist/{song}', [Songcontroller::class, 'addToPlaylist']);
 
 Route::get('/playlist/{playlist}', function($id){
     $playlist = Playlist::findOrFail($id);
-    return view('playlist')->with('playlist', $playlist);
+    $songs = Song::where("playlist_id", $id)->get();
+    return view('playlist')->with('playlist', $playlist)->with('songs', $songs);;
 });
 
 Route::get('/createPlaylist', function() {
