@@ -68,3 +68,9 @@ Route::get('/createPlaylist', function() {
 });
 
 Route::post('/createPlaylist', [Playlistcontroller::class, 'create']);
+
+Route::get('/deletePlaylist/{playlist}', function($id){
+    $playlist = Playlist::findOrFail($id);
+    Playlist::where('id', $id)->delete();
+    return redirect()->back();
+});
