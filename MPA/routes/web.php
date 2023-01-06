@@ -74,3 +74,9 @@ Route::get('/deletePlaylist/{playlist}', function($id){
     Playlist::where('id', $id)->delete();
     return redirect()->back();
 });
+
+Route::get('/deletefromPlaylist/{song}', function($id){
+    $song = Song::findOrFail($id);
+    Song::where('id', $id)->update(["playlist_id" => 0]);;
+    return redirect()->back();
+});

@@ -7,6 +7,7 @@
     
     <?php foreach($songs as $song){?>
         {{ $song->name }}
+        <a href="/deletefromPlaylist/{{$song->id}}"><button title="delete song" class="deleteBtn">x</button></a>
         <br>
     <?php } ?>
 
