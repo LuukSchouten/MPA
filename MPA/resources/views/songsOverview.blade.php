@@ -10,8 +10,8 @@
     <?php foreach($song as $song){?>
 
         <a href="/song/{{$song->id}}">{{$song->name}}</a> - {{$song->author}} 
-        <a href="/deleteSong/{{$song->id}}"><button title="delete song" class="deleteBtn">x</button></a>
         <a href="/editSong/{{$song->id}}"><button title="edit song" class="editBtn"><i class="fa-regular fa-pen-to-square"></i></button></a>
+        <a href="/deleteSong/{{$song->id}}"><button title="delete song" class="deleteBtn">x</button></a>
         <br><br>
 
     <?php } ?>

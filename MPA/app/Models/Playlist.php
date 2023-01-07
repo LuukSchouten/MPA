@@ -9,6 +9,9 @@ class Playlist extends Model
 
     protected $table = 'playlists';
 
+    public $timestamps = false;
+    const UPDATED_AT = false;
+
     protected $fillable = [
         'name'
     ];

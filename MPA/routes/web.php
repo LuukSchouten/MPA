@@ -55,6 +55,14 @@ Route::get('/deleteSong/{song}', function($id){
 
 Route::get('/playlistsOverview', [Playlistcontroller::class, 'read']);
 
+Route::get('/editPlaylist/{playlist}' , function($id){
+    $playlist = Playlist::findOrFail($id);
+    return view('editPlaylist')
+        ->with('playlist', $playlist);
+});
+
+Route::post('/editPlaylist/{playlist}', [Playlistcontroller::class, 'edit']);
+
 Route::post('/addToPLaylist/{song}', [Songcontroller::class, 'addToPlaylist']);
 
 Route::get('/playlist/{playlist}', function($id){
