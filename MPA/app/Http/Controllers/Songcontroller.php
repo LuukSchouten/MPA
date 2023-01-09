@@ -24,10 +24,18 @@ class Songcontroller extends controller{
     }
 
     //function to show the songs on the overview page
-    public function read(){
-        $song = Song::all();
+    public function read(Request $request){
+        $genre = Song::all();
+
+        if($request->genre){
+            $song = Song::where('genre', $request->genre)->get();
+        }else{
+            $song = Song::all();
+        }
+        
         return view('songsOverview')
-            ->with('song', $song);
+            ->with('song', $song)
+            ->with('genre', $genre);
     }
 
     //function to edit the songs

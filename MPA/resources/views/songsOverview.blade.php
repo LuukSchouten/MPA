@@ -6,6 +6,16 @@
     </h1>
 
     <!-- add filter by genre functionality -->
+    <form method='get' action='songsOverview'>
+        <select name='genre' style='margin-right: 1em'>
+            <option> </option>
+            <?php foreach($genre as $genres){?>
+                <option> {{$genres->genre}} </option>
+            <?php } ?>
+            <input type='submit' value='filter'>
+        </select>
+    </form>
+    <br><br>
 
     <?php foreach($song as $song){?>
 
