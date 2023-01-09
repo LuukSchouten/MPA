@@ -57,9 +57,10 @@ Route::get('/playlistsOverview', [Playlistcontroller::class, 'read']);
 
 Route::get('/editPlaylist/{playlist}' , function($id){
     $playlist = Playlist::findOrFail($id);
+    
     return view('editPlaylist')
         ->with('playlist', $playlist);
-});
+    });
 
 Route::post('/editPlaylist/{playlist}', [Playlistcontroller::class, 'edit']);
 
@@ -68,7 +69,12 @@ Route::post('/addToPLaylist/{song}', [Songcontroller::class, 'addToPlaylist']);
 Route::get('/playlist/{playlist}', function($id){
     $playlist = Playlist::findOrFail($id);
     $songs = Song::where("playlist_id", $id)->get();
-    return view('playlist')->with('playlist', $playlist)->with('songs', $songs);;
+    $totalTime = DB::select("SELECT  SEC_TO_TIME( SUM( TIME_TO_SEC( `length` ) ) ) AS timeSum FROM songs where playlist_id = '$id'");
+
+    return view('playlist')
+        ->with('playlist', $playlist)
+        ->with('songs', $songs)
+        ->with('totalTime', $totalTime);
 });
 
 Route::get('/createPlaylist', function() {
