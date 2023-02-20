@@ -94,6 +94,7 @@ Route::get('/deletefromPlaylist/{song}', function($id){
     Song::where('id', $id)->update(["playlist_id" => 0]);;
     return redirect()->back();
 });
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -49,3 +49,8 @@ body {
 .editBtn:hover{
     cursor: pointer;
 }
+
+.login{
+    float: right;
+    margin-right: 15em;
+}
