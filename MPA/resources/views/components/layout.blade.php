@@ -16,7 +16,7 @@
         
         <div class="main">
             <h1>
-                <a href="/" id="homeLink">
+                <a href="/dashboard" id="homeLink">
                     JukeBox
                 </a>
             </h1>

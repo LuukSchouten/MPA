@@ -17,6 +17,6 @@ class Song extends Model
         'genre',
         'length',
         'author',
-        'playlist_id',
+        'playlist_id'
     ];
 }
