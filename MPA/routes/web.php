@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Songcontroller;
 use App\Http\Controllers\Playlistcontroller;
+use App\Http\Controllers\Sessioncontroller;
 
 use App\Models\Song;
 use App\Models\Playlist;
@@ -104,5 +105,10 @@ Route::get('/deletefromPlaylist/{song}', function($id){
     Song::where('id', $id)->update(["playlist_id" => 0]);;
     return redirect()->back();
 });
+
+Route::get('/addToQueue/{song}', [Sessioncontroller::class, 'storeSession', ]);
+
+Route::get('/Queue', [Sessioncontroller::class, 'showSession']);
+
 
 require __DIR__.'/auth.php';

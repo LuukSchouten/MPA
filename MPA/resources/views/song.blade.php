@@ -22,5 +22,8 @@
 
     </form>
 
+    <br>
+    <a href="/addToQueue/{{$song->id}}">Add to queue</a>
+
     </x-slot>
 </x-layout>

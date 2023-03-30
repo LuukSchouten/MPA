@@ -1,3 +1,8 @@
+<?php
+    // Start the session
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -31,6 +36,17 @@
             <main>
                 {{ $slot }}
             </main>
+
+
         </div>
+
+        <footer>
+
+            <h3>Session contents:</h3>
+            @foreach(Session::all() as $key=>$value)
+                <li>{{ $key }} : {{ is_array($value) ? var_dump($value) : $value }}</li>
+            @endforeach
+            
+        </footer>
     </body>
 </html>

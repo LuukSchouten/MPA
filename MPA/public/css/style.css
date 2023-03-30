@@ -54,3 +54,11 @@ body {
     float: right;
     margin-right: 15em;
 }
+
+.qBtn{
+    background-color: yellow;
+    border-radius: 20%;
+}
+.qBtn:hover{
+    cursor: pointer;
+}
