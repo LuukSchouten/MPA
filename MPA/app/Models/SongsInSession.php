@@ -30,7 +30,7 @@ class SongsInSession extends Model
 
     function AddToSession($id) {
         array_push($this->items, $id);
-        $this->items = array_unique($this->items);
+        $this->items = ($this->items);
         $this->saveToSession();
     }
 
