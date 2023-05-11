@@ -6,6 +6,7 @@ use App\Http\Controllers\Songcontroller;
 use App\Http\Controllers\Playlistcontroller;
 use App\Http\Controllers\Sessioncontroller;
 use App\Http\middleware;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\Song;
 use App\Models\Playlist;
@@ -112,6 +113,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/addToQueue/{song}', [Sessioncontroller::class, 'storeSession', ]);
     
     Route::get('/Queue', [Sessioncontroller::class, 'showSession']);
+
+    Route::get('/Queue/remove/{id}', function($id) {
+        $song = Song::findOrFail($id);
+        if (Session::has($id)) {
+            Session::forget($id);
+        }
+    
+        return redirect()->back();
+    });
     
 });
 

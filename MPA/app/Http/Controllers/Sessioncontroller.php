@@ -11,6 +11,7 @@ use App\Models\Playlist;
 use App\Models\SongsInSession;
 use Illuminate\Support\Facades\Session;
 
+
 class Sessioncontroller extends controller{
 
     //shows the song items in the queue, asks for playlist name and shows submit btn
@@ -31,12 +32,7 @@ class Sessioncontroller extends controller{
         return view('queue', ['songs' => $songs]);
     }
 
-    public function deleteSession(){
-        
-    }
-
     
-
 }
 
 ?>
