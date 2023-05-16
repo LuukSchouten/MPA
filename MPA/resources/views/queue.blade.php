@@ -9,5 +9,9 @@
             <br><br>
         <?php } ?>
 
+        <a class="styledLink" href="createQueuePlaylist">
+            <p class="centeredText">Create queue playlist</p>
+        </a>
+
     </x-slot>
 </x-layout>

@@ -21,7 +21,7 @@ class Sessioncontroller extends controller{
 
         $songs = $SS->AddToSession($id);   // [1,2,3]
 
-        return redirect()->back()->with('showPopup', true); 
+        return redirect()->back(); 
     
     }
 

@@ -17,6 +17,13 @@ class Song extends Model
         'genre',
         'length',
         'author',
-        'playlist_id'
     ];
+}
+
+class Song extends Model
+{
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class);
+    }
 }

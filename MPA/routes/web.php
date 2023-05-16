@@ -110,18 +110,28 @@ Route::middleware(['auth'])->group(function () {
         return redirect()->back();
     });
     
-    Route::get('/addToQueue/{song}', [Sessioncontroller::class, 'storeSession', ]);
+    Route::get('/addToQueue/{song}', [Sessioncontroller::class, 'storeSession']);
     
     Route::get('/Queue', [Sessioncontroller::class, 'showSession']);
 
-    Route::get('/Queue/remove/{id}', function($id) {
-        $song = Song::findOrFail($id);
-        if (Session::has($id)) {
-            Session::forget($id);
-        }
+    Route::get('/Queue/remove/{id}', function($index) {
+
+        $queue = session('queue');
+    
+        $key = array_search($index, $queue);
+    
+        if ($key !== false) {
+            unset($queue[$key]);
+            session(['queue' => $queue]);
+            Session::save();
+            // Item removed from the session array
+        } 
     
         return redirect()->back();
     });
+
+    Route::get('createQueuePlaylist', [Playlistcontroller::class, 'QueuePlaylistPage']);
+    Route::post('createQueuePlaylist', [Playlistcontroller::class, 'CreateQueuePlaylist']);
     
 });
 

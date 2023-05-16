@@ -1,9 +1,9 @@
 <x-layout>
     <x-slot name="content">
 
-    @if (session('showPopup'))
-        <script>
-            alert('Song added to queue!');
+    @if (session('message'))
+        <script> 
+            alert('{{ session('message') }}');
         </script>
     @endif
 

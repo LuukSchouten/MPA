@@ -37,6 +37,34 @@ class Playlistcontroller extends controller{
         return redirect('/playlistsOverview');
     }
 
+    public function QueuePlaylistPage(){
+        return view('/createQueueplaylist');
+    }
+
+    public function CreateQueuePlaylist(Request $request){
+
+        $data = $request->input();
+
+        $songs = Song::all();
+
+        $sessionSongs = $request->session()->all();
+
+        DB::table('playlists')->insert([
+            'name' => $data['name'],
+        ]);;
+
+        $playlistId = DB::table('playlists')->insertGetId([
+            'name' => $data['name'],
+        ]);
+
+        foreach ($sessionSongs as $key => $value) {
+            // Store the item in the database
+            $songsModel = new SongsInSession();
+            $songsModel->playlist_id = $playlistId; // Assign the playlist ID
+            $songsModel->save();
+        }
+    }
+    
 
 }
 

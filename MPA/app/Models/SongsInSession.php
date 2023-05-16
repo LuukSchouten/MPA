@@ -29,9 +29,18 @@ class SongsInSession extends Model
     }
 
     function AddToSession($id) {
-        array_push($this->items, $id);
-        $this->items = ($this->items);
-        $this->saveToSession();
+        $queue = session('queue');
+    
+        $key = array_search($id, $queue);
+    
+        if ($key !== false) {
+            return redirect()->back()->with('message', 'song already added to queue!');
+        }else{
+            array_push($this->items, $id);
+            $this->items = ($this->items);
+            $this->saveToSession();
+            return redirect()->back()->with('message', 'song added to queue!');
+        }
     }
 
     function GetSongs() {
@@ -50,7 +59,7 @@ class SongsInSession extends Model
 
     function saveToSession() {
         Session::put('queue', $this->items);
-        Session::save();        // when using dd, session is not saved, therefore this manual save
+        Session::save();      
     }
 
 }
