@@ -25,8 +25,10 @@ class Playlistcontroller extends controller{
 
     //function to show all playlists on the playlistsOverview page
     public function read(){
-        $playlist = Playlist::all();
-        return view('playlistsOverview')->with('playlist', $playlist);
+        $user = auth()->user();
+        $playlist = $user->playlists;
+
+        return view('playlistsOverview', compact('playlist'));
     }
 
     //function to edit a playlist
