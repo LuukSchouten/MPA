@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 use App\Models\Song;
 use App\Models\Playlist;
+use App\Models\PlaylistSong;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,9 +84,14 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/playlist/{playlist}', function($id){
         $playlist = Playlist::findOrFail($id);
-        $songs = Song::where("playlist_id", $id)->get();
-        $totalTime = DB::select("SELECT  SEC_TO_TIME( SUM( TIME_TO_SEC( `length` ) ) ) AS timeSum FROM songs where playlist_id = '$id'");
-    
+        $songs = $playlist->songs;
+        $totalTime = DB::table('playlist_song')
+            ->join('songs', 'playlist_song.song_id', '=', 'songs.id')
+            ->where('playlist_id', $playlist->id)
+            ->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(songs.length))) AS total_length')
+            ->first()
+            ->total_length;
+
         return view('playlist')
             ->with('playlist', $playlist)
             ->with('songs', $songs)
@@ -106,7 +112,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/deletefromPlaylist/{song}', function($id){
         $song = Song::findOrFail($id);
-        Song::where('id', $id)->update(["playlist_id" => 0]);;
+        $song->playlists()->detach();
         return redirect()->back();
     });
     

@@ -13,7 +13,7 @@
 
     <p>Total length:</p>
 
-    {{$totalTime[0]->timeSum}}
+    {{$totalTime}}
 
     </x-slot>
 </x-layout>

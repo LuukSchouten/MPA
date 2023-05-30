@@ -43,26 +43,21 @@ class Playlistcontroller extends controller{
 
     public function CreateQueuePlaylist(Request $request){
 
-        $data = $request->input();
+    $data = $request->input();
 
-        $songs = Song::all();
+    // Create a new playlist
+    $playlist = Playlist::create([
+        'name' => $data['name'],
+    ]);
 
-        $sessionSongs = $request->session()->all();
+    // Get the song IDs from the session
+    $songIds = $request->session()->get('queue', []);
 
-        DB::table('playlists')->insert([
-            'name' => $data['name'],
-        ]);;
+    // Attach the songs to the playlist
+    $playlist->songs()->attach($songIds);
 
-        $playlistId = DB::table('playlists')->insertGetId([
-            'name' => $data['name'],
-        ]);
+    return redirect('/playlistsOverview');
 
-        foreach ($sessionSongs as $key => $value) {
-            // Store the item in the database
-            $songsModel = new SongsInSession();
-            $songsModel->playlist_id = $playlistId; // Assign the playlist ID
-            $songsModel->save();
-        }
     }
     
 

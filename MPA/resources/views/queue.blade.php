@@ -9,6 +9,8 @@
             <br><br>
         <?php } ?>
 
+        <p> Queue length: {{ $formattedTotalLength }} </p>
+
         <a class="styledLink" href="createQueuePlaylist">
             <p class="centeredText">Create queue playlist</p>
         </a>

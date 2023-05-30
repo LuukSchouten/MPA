@@ -18,12 +18,11 @@ class Song extends Model
         'length',
         'author',
     ];
-}
 
-class Song extends Model
-{
     public function playlists()
     {
         return $this->belongsToMany(Playlist::class);
     }
 }
+
+

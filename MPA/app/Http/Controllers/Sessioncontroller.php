@@ -29,7 +29,20 @@ class Sessioncontroller extends controller{
         $sp = new SongsInSession();
         $songs = $sp->GetSongs();   // gets us a collection of Song models
 
-        return view('queue', ['songs' => $songs]);
+        $totalLength = 0;
+    
+        foreach ($songs as $song) {
+            // Assuming the length is stored in the 'length' field of each song
+            $songLength = strtotime($song['length']);
+            $totalLength += $songLength;
+        }
+
+        $formattedTotalLength = gmdate('H:i:s', $totalLength);
+
+        return view('queue', [
+            'songs' => $songs,
+            'formattedTotalLength' => $formattedTotalLength
+        ]);
     }
 
     

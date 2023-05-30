@@ -52,8 +52,8 @@ class Songcontroller extends controller{
     //add the song to the selected playlist
     public function addToPlaylist(Request $request,$id){
         $song = Song::findOrFail($id);
-        $song->playlist_id = $request->input('playlist_id');
-        $song->save();
+        $playlistIds = $request->input('playlist_id');
+        $song->playlists()->syncWithoutDetaching($playlistIds);
         return redirect('/songsOverview');
     }
 
