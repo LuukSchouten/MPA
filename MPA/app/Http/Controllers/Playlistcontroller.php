@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Playlist;
 use App\Models\Song;
 
@@ -14,13 +17,15 @@ class Playlistcontroller extends controller{
        //function to create a playlist
        public function create(Request $request){
 
-        $data = $request->input();
+        $user = Auth::user(); // Retrieve the authenticated user
 
-        DB::table('playlists')->insert([
-            'name' => $data['name'],
-        ]);
+        $playlist = new Playlist(); //create a new playlist
+        $playlist->name = $request->input('name'); //request the user input
 
-        return redirect('/playlistsOverview');
+        $playlist->user_id = $user->id; //assign user id to playlist
+        $playlist->save(); //save playlist
+
+        return redirect('/playlistsOverview'); //return to playlistOverview
     }
 
     //function to show all playlists on the playlistsOverview page
